@@ -49,6 +49,11 @@ export default {
     '@nuxtjs/axios',
   ],
 
+  // Customize the progress bar color
+  loading: {
+    color: '#111'
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 

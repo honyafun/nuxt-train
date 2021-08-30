@@ -21,11 +21,11 @@ $ yarn generate
 
 ### 環境構築
 
-- TypeScript 導入
-- Docker 導入
-- ESLint & Prettier 導入
-- github actions でテスト自動化
-- StyleLint 導入
+- [ ] TypeScript 導入
+- [ ] Docker 導入
+- [ ] ESLint & Prettier 導入
+- [ ] github actions でテスト自動化
+- [ ] StyleLint 導入
 
 ### axios
 
@@ -34,3 +34,7 @@ $ yarn generate
 ### Vuex
 
 - CRUD を作ってみる
+
+### 試してみたこと
+
+- [ ] 動的ページの出し分け

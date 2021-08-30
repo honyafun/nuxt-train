@@ -1,6 +1,14 @@
 export default {
+  router: {
+    middleware: [
+      'auth-cookie'
+    ]
+  },
+
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
+
+  srcDir: 'app',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -26,7 +34,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    '@/plugins/moment'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -43,7 +52,9 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: 'https://nuxt-blog-service-f8cde.firebaseio.com'
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
