@@ -7,11 +7,19 @@
       <el-table
         :data="showPosts"
         style="width: 100%"
+        @row-click="handleClick"
         class="table"
       >
         <el-table-column
           prop="title"
           label="タイトル">
+          <div slot-scope="scope">
+            <span>{{scope.row.title}}&nbsp;</span>
+            <span>
+              <i class="el-icon-star-on" />
+              <span>{{scope.row.likes.length}}</span>
+            </span>
+          </div>
         </el-table-column>
         <el-table-column
           prop="user.id"
@@ -29,28 +37,25 @@
 </template>
 
 <script>
+import moment from '~/plugins/moment'
+import { mapGetters } from 'vuex'
 
 export default {
+  async asyncData({ store }) {
+    await store.dispatch('posts/fetchPosts')
+  },
   computed: {
     showPosts() {
-      return [
-        {
-          id: '001',
-          title: 'hogehoge body',
-          created_at: '2018/08/10 12:00:00',
-          user: {
-            id: 'honyafun'
-          }
-        },
-                {
-          id: '002',
-          title: 'fugafuga body',
-          created_at: '2018/08/10 12:00:00',
-          user: {
-            id: 'honyafun'
-          }
-        }
-      ]
+      return this.posts.map(post => {
+        post.created_at = moment(post.created_at).format('YYYY/MM/DD HH:mm:ss')
+        return post
+      })
+    },
+    ...mapGetters('posts', ['posts'])
+  },
+  methods: {
+    handleClick(post) {
+      this.$router.push(`/posts/${post.id}`)
     }
   }
 }

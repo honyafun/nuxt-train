@@ -1,16 +1,26 @@
+
 <template>
   <div>
-    <p>/user.index.vue</p>
+    <h2>カウンター</h2>
+    <h3>Count: <span class="count">{{count}}</span></h3>
+    <button type="button" @click="increment">Increment</button>
+    <AppButton />
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+import AppButton from '~/components/AppButton.vue'
+
 export default {
-  async mounted () {
-    console.log(
-      JSON.stringify(await
-        this.$axios.$get('https://qiita.com/api/v2/items?query=tag:nuxt.js'), true, ' ')
-      )
+  components: {
+    AppButton
+  },
+  computed: {
+    ...mapGetters(['count'])
+  },
+  methods: {
+    ...mapActions(['increment'])
   }
 }
 </script>

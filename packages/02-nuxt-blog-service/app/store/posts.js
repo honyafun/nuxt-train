@@ -41,7 +41,7 @@ export const actions = {
   },
   async publishPost({ commit }, { payload }) {
     const user = await this.$axios.$get(`/users/${payload.user.id}.json`)
-    // const created_at = moment().format()
+    const created_at = moment().format()
     payload = {
       created_at,
       ...payload
@@ -55,5 +55,19 @@ export const actions = {
       putData
     ])
     commit('addPost', { post })
+  },
+  async addLikeToPost({ commit }, { user, post }) {
+    post.likes.push({
+      created_at: moment().format(),
+      user_id: user.id,
+      post_id: post.id
+    })
+    const newPost = await this.$axios.$put(`/posts/${post.id}.json`, post)
+    commit('updatePost', { post: newPost })
+  },
+  async removeLikeToPost({ commit }, { user, post }) {
+    post.likes = post.likes.filter(like => like.user_id !== user.id) || []
+    const newPost = await this.$axios.$put(`/posts/${post.id}.json`, post)
+    commit('updatePost', { post: newPost })
   }
 }
