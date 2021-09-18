@@ -1,77 +1,89 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
+  <div>
+    <v-row justify="center" align="center">
+      <h1>Weekly Ranking</h1>
+    </v-row>
+    <v-row>
       <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
+        <v-img 
+          src="http://img.youtube.com/vi/mnta9Pp2LqA/hqdefault.jpg"
+          height="200px" 
+          width="266px" />
+        <v-card-title>
+          Songs: ラブレター
         </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
+        <v-card-subtitle>
+          Artist: YOASOBI
+        </v-card-subtitle>
         <v-card-actions>
-          <v-spacer />
           <v-btn
             color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
+            text>
+            open
           </v-btn>
+          <v-spacer></v-spacer>
         </v-card-actions>
       </v-card>
-    </v-col>
-  </v-row>
+            <v-card>
+        <v-img 
+          src="http://img.youtube.com/vi/mnta9Pp2LqA/hqdefault.jpg"
+          height="200px" 
+          width="266px" />
+        <v-card-title>
+          Songs: ラブレター
+        </v-card-title>
+        <v-card-subtitle>
+          Artist: YOASOBI
+        </v-card-subtitle>
+        <v-card-actions>
+          <v-btn
+            color="primary"
+            text>
+            open
+          </v-btn>
+          <v-spacer></v-spacer>
+        </v-card-actions>
+      </v-card>
+            <v-card>
+        <v-img 
+          src="http://img.youtube.com/vi/mnta9Pp2LqA/hqdefault.jpg"
+          height="200px" 
+          width="266px" />
+        <v-card-title>
+          Songs: ラブレター
+        </v-card-title>
+        <v-card-subtitle>
+          Artist: YOASOBI
+        </v-card-subtitle>
+        <v-card-actions>
+          <v-btn
+            color="primary"
+            text>
+            open
+          </v-btn>
+          <v-spacer></v-spacer>
+        </v-card-actions>
+      </v-card>
+    </v-row>
+    <v-row>
+      <ul>
+        <li v-for="item in items">
+          <pre>
+            {{item}}
+          </pre>
+        </li>
+      </ul>
+    </v-row>
+  </div>
 </template>
+
+<script>
+export default {
+  async asyncData({app}) {
+    const items = await app.$axios.$get('https://www.googleapis.com/youtube/v3/search?&q=yoasobi&key=AIzaSyBWVUzFwuKM5JjFhUcI2bt26AGnIkTVfac')    
+    return {
+      items
+    }
+  }
+}
+</script>
